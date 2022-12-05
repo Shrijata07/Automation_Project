@@ -13,7 +13,6 @@ then
         echo "Apache is available"
 else
         echo "Apache is unavailable"
-
         sudo apt install apache2
 fi
 
@@ -35,6 +34,5 @@ sudo systemctl enable apache2
 #create tar files from the logs
 
 sudo tar -cvf /tmp/"${name}-httpd-logs-${timestamp}.tar" /var/log/apache2/*.log
-#copy to S3 bucket
-
+# Upload to S3 bucket
 aws s3 cp /tmp/${name}-httpd-logs-${timestamp}.tar s3://${s3_bucket}/${name}-httpd-logs-${timestamp}.tar
